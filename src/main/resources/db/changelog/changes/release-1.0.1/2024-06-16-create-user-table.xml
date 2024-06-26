@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="4" author="Max">
+        <comment>Создание таблицы simple_user и сиквенса simple_user_seq</comment>
+
+        <createSequence sequenceName="simple_user_seq" startValue="1" incrementBy="50" />
+
+        <createTable tableName="simple_user">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_simple_user"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="simple_user"/>
+            <dropSequence sequenceName="simple_user_seq"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

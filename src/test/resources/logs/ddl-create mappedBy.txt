@@ -1,0 +1,34 @@
+Hibernate: alter table if exists animal drop constraint if exists FKojllrs4g1np633u6beb3hnk74
+Hibernate: alter table if exists profile drop constraint if exists FK173qav6d9jm5g5ycfpbvelj0f
+Hibernate: alter table if exists worker drop constraint if exists FKsk5jpc6c2o8dx8qsmfigh2lam
+Hibernate: drop table if exists animal cascade
+Hibernate: drop table if exists email cascade
+Hibernate: drop table if exists image cascade
+Hibernate: drop table if exists owner cascade
+Hibernate: drop table if exists profile cascade
+Hibernate: drop table if exists simple_user cascade
+Hibernate: drop table if exists worker cascade
+Hibernate: drop sequence if exists animal_seq
+Hibernate: drop sequence if exists email_seq
+Hibernate: drop sequence if exists image_seq
+Hibernate: drop sequence if exists owner_seq
+Hibernate: drop sequence if exists profile_seq
+Hibernate: drop sequence if exists simple_user_seq
+Hibernate: drop sequence if exists worker_seq
+Hibernate: create sequence animal_seq start with 1 increment by 50
+Hibernate: create sequence email_seq start with 1 increment by 50
+Hibernate: create sequence image_seq start with 1 increment by 50
+Hibernate: create sequence owner_seq start with 1 increment by 50
+Hibernate: create sequence profile_seq start with 1 increment by 50
+Hibernate: create sequence simple_user_seq start with 1 increment by 50
+Hibernate: create sequence worker_seq start with 1 increment by 50
+Hibernate: create table animal (id bigint not null, owner_id bigint, name varchar(255), primary key (id))
+Hibernate: create table email (id bigint not null, address varchar(255), primary key (id))
+Hibernate: create table image (id bigint not null, value oid, primary key (id))
+Hibernate: create table owner (id bigint not null, name varchar(255), primary key (id))
+Hibernate: create table profile (id bigint not null, user_id bigint unique, desc varchar(255), primary key (id))
+Hibernate: create table simple_user (id bigint not null, name varchar(255), surname varchar(255), primary key (id))
+Hibernate: create table worker (id bigint not null, image_id bigint unique, name varchar(255) not null unique, primary key (id))
+Hibernate: alter table if exists animal add constraint FKojllrs4g1np633u6beb3hnk74 foreign key (owner_id) references owner
+Hibernate: alter table if exists profile add constraint FK173qav6d9jm5g5ycfpbvelj0f foreign key (user_id) references simple_user
+Hibernate: alter table if exists worker add constraint FKsk5jpc6c2o8dx8qsmfigh2lam foreign key (image_id) references image

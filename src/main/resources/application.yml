@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/education
+    username: postgres
+    password: 12345
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: public
+  application:
+    name: jpa-lesson
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+    enabled: true

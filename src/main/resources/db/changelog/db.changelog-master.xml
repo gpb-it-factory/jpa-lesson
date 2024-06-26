@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <!--Указание пути до директории относительно папки с миграциями-->
+    <includeAll path="changes/release-1.0.0" relativeToChangelogFile="true"/>
+
+    <!--Указание пути до директории относительно ресурсов-->
+    <includeAll path="db/changelog/changes/release-1.0.1"/>
+
+    <!--Указание пути до конкретного файла миграции относительно ресурсов-->
+    <include file="db/changelog/changes/release-1.0.2/2024-06-15-create-email-table.xml"/>
+
+    <!--Указание пути до конкретных файлов миграции относительно папки с миграциями-->
+    <include file="changes/release-1.0.3/2024-06-14-create-image-table.xml" relativeToChangelogFile="true"/>
+    <include file="changes/release-1.0.3/2024-06-17-create-worker-table.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

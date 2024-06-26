@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="6" author="Max">
+        <comment>ЗАДАЧА-1: Создание последовательности owner_seq и таблицы owner с полями id и name, где id является первичным ключом</comment>
+
+        <createSequence sequenceName="owner_seq" startValue="1" incrementBy="50" />
+
+        <createTable tableName="owner">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_owner"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="owner"/>
+            <dropSequence sequenceName="owner_seq"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

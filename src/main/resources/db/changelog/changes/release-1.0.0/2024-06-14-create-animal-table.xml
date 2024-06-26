@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="7" author="Max">
+        <comment>ЗАДАЧА-2: Создание последовательности animal_seq и таблицы animal с полями id, name и owner_id, где id является первичным ключом. Также добавляет внешний ключ, ссылающийся на таблицу owner</comment>
+
+        <createSequence sequenceName="animal_seq" startValue="1" incrementBy="50" />
+
+        <createTable tableName="animal">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_animal"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="owner_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="animal"
+                                 baseColumnNames="owner_id"
+                                 constraintName="FK_ANIMAL_ON_OWNER"
+                                 referencedTableName="owner"
+                                 referencedColumnNames="id"/>
+
+        <rollback>
+            <dropTable tableName="animal"/>
+            <dropSequence sequenceName="animal_seq"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

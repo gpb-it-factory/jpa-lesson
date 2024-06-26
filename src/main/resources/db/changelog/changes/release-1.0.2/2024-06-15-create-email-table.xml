@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="2" author="Max">
+        <comment>ЗАДАЧА-42: Создание таблицы email и сиквенса</comment>
+        <sql>
+            CREATE SEQUENCE IF NOT EXISTS email_seq START WITH 1 INCREMENT BY 50;
+
+            CREATE TABLE email
+            (
+                id      BIGINT NOT NULL,
+                address VARCHAR(255),
+                CONSTRAINT pk_email PRIMARY KEY (id)
+            );
+        </sql>
+
+        <loadData file="db/changelog/changes/release-1.0.2/init_email.csv" tableName="email"/>
+
+        <rollback>
+            <dropTable tableName="email"/>
+            <dropSequence sequenceName="email_seq"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
